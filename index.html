@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok LIVE Receipt with MK</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #101014;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+
+    #receipt-area {
+      width: 100%;
+      max-width: 430px;
+    }
+
+    .receipt {
+      background: white;
+      color: #111;
+      padding: 25px;
+      margin-bottom: 18px;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,.35);
+      animation: appear .5s ease;
+    }
+
+    .receipt-icon {
+      font-size: 45px;
+      margin-bottom: 8px;
+    }
+
+    .receipt h2 {
+      margin: 5px 0;
+      font-size: 20px;
+    }
+
+    .username {
+      font-size: 26px;
+      font-weight: bold;
+      margin: 12px 0;
+    }
+
+    .message {
+      font-size: 16px;
+    }
+
+    .time {
+      font-size: 12px;
+      color: #777;
+      margin-top: 18px;
+      border-top: 1px dashed #aaa;
+      padding-top: 12px;
+    }
+
+    .controls {
+      margin-top: 25px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(-20px) scale(.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>MK LIVE RECEIPTS</h1>
+  <div class="subtitle">TikTok LIVE Activity</div>
+
+  <div id="receipt-area"></div>
+
+  <div class="controls">
+    <button onclick="giftEvent()">🌹 Test Rose</button>
+    <button onclick="followEvent()">❤️ Test Follow</button>
+    <button onclick="likeEvent()">👍 Test Like</button>
+    <button onclick="clearReceipts()">🗑 Clear</button>
+  </div>
+
+  <script>
+    const receiptArea = document.getElementById("receipt-area");
+
+    function createReceipt(icon, title, username, message) {
+
+      const receipt = document.createElement("div");
+      receipt.className = "receipt";
+
+      const currentTime = new Date().toLocaleTimeString();
+
+      receipt.innerHTML = `
+        <div class="receipt-icon">${icon}</div>
+
+        <h2>${title}</h2>
+
+        <div class="username">${username}</div>
+
+        <div class="message">${message}</div>
+
+        <div class="time">
+          ${currentTime}<br>
+          MK LIVE • THANK YOU ❤️
+        </div>
+      `;
+
+      receiptArea.prepend(receipt);
+    }
+
+    function giftEvent() {
+      createReceipt(
+        "🌹",
+        "GIFT RECEIVED",
+        "@Sarah123",
+        "Sent you a Rose 🌹"
+      );
+    }
+
+    function followEvent() {
+      createReceipt(
+        "❤️",
+        "NEW FOLLOWER",
+        "@MikeNYC",
+        "Just followed your TikTok!"
+      );
+    }
+
+    function likeEvent() {
+      createReceipt(
+        "👍",
+        "LIVE LIKE",
+        "@Jessica22",
+        "Liked your LIVE ❤️"
+      );
+    }
+
+    function clearReceipts() {
+      receiptArea.innerHTML = "";
+    }
+  </script>
+
+</body>
+</html>
